@@ -11,7 +11,7 @@ def count_lines(input_dir, rows_to_skip):
                 and entry.is_file()
                 and not entry.name.startswith('.')]
   
-  print(f'Found {len(file_list)} SRFs to count.\n')
+  print(f'Found {len(file_list)} SRFs to count.\n', flush=True)
 
   skip_rows = list(range(rows_to_skip))
 
@@ -25,14 +25,14 @@ def count_lines(input_dir, rows_to_skip):
 
     print(f'{f.name}\t{len(df)}')
 
-  print()
-  print(f'{samples} total samples collected.')
+  print(flush=True)
+  print(f'{samples} total samples collected.', flush=True)
 
 
 @Gooey(program_name='SRF Line Counter')
 def main():
   parser = GooeyParser(description='Count the number of rows of data in a folder of SRFs for NSF reporting.')
-  parser.add_argument('input_dir', default='/Users/xander/Desktop/SRFs', widget='DirChooser', metavar='Folder with SRF Excel files to evaulate', help='Path to the folder with SRFs in it')
+  parser.add_argument('input_dir', widget='DirChooser', metavar='Folder with SRF Excel files to evaulate', help='Path to the folder with SRFs in it')
   parser.add_argument('-s', '--rows_to_skip',
                       type=int,
                       default=8,
